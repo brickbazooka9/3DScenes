@@ -59,6 +59,17 @@ conda activate culture3d
 │ UV-map objects • txt2img • texture bake        │→ textured *.glb
 └───────────────────────────────────────────────┘
 
+## Progress:
+
+## Project status
+
+| Phase | Done? | Artefact |
+|-------|-------|----------|
+| 1. Data scraping            | ✔️ | `scrape_textures_duckduckgo.py`, JPEGs (local) |
+| 2. Prompt enrichment (LLaVA) | ✔️ | `visual_enrich_llava.py`, `all_metadata_enriched.csv` |
+| 3. LoRA texture fine-tune    | 🔜 | _scheduled July ’25_ |
+| 4. CommonScenes integration  | 🔜 | _scheduled August ’25_ |
+| 5. Evaluation & demo         | 🔜 | _scheduled August ’25_ |
 
 
 

@@ -33,3 +33,33 @@ We combine **CommonScenes** (scene-graph → 3-D layout) with a **LoRA-fine-tune
 ```bash
 git clone https://github.com/<your-username>/culture-enhanced-3dscenes.git
 cd culture-enhanced-3dscenes
+```
+
+## 1.2 Environment
+
+conda env create -f environment.yml
+conda activate culture3d
+# or: pip install -r requirements.txt
+
+## 2 Pipeline Overview
+
+┌──────── 1. Scrape textures ─────┐
+│ DuckDuckGo / Unsplash API       │→ JPG
+└─────────────────────────────────┘
+          │
+┌──────── 2. Prompt enrichment (vision LLM) ────┐
+│ local LLaVA via Ollama                        │→ all_metadata_enriched.csv
+└───────────────────────────────────────────────┘
+          │
+┌──────── 3. LoRA fine-tune Stable Diffusion ───┐
+│ rank=8 • res=512 • 12 k steps                 │→ textures_lora.safetensors
+└───────────────────────────────────────────────┘
+          │
+┌──────── 4. Integrate with CommonScenes ───────┐
+│ UV-map objects • txt2img • texture bake        │→ textured *.glb
+└───────────────────────────────────────────────┘
+
+
+
+
+

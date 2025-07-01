@@ -1,1 +1,44 @@
+# Ignore Python virtual environments
 .venv/
+
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Logs
+*.log
+loss_logs/
+
+# Model artifacts
+checkpoints/
+*.ckpt
+*.pt
+*.pth
+
+# Training outputs
+lora-out/
+eval_outputs/
+*.jpg
+*.png
+
+# Datasets
+textures_lora/
+dataset_culture_textures/
+tatami_sample.png
+
+# Environment config
+.env
+.envrc
+.DS_Store
+
+# VS Code settings
+.vscode/
+
+# Local build artifacts
+build/
+dist/
+*.egg-info/

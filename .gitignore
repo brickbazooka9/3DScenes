@@ -25,10 +25,7 @@ eval_outputs/
 *.jpg
 *.png
 
-# Datasets
-textures_lora/
-dataset_culture_textures/
-tatami_sample.png
+
 
 # Environment config
 .env

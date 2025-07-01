@@ -1,0 +1,4 @@
+{
+"prompt": "[ERROR] HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=180)",
+"path": "textures_lora\\Indian\\furniture\\indian_furniture_055.jpg"
+}

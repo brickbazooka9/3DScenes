@@ -1,0 +1,11 @@
+culture,mode,image_path,clip_score
+Japanese,base,eval_outputs\Japanese_base_0.png,1.0
+Japanese,base,eval_outputs\Japanese_base_1.png,1.0
+Japanese,base,eval_outputs\Japanese_base_2.png,1.0
+Japanese,base,eval_outputs\Japanese_base_3.png,1.0
+Japanese,base,eval_outputs\Japanese_base_4.png,1.0
+Japanese,lora,eval_outputs\Japanese_lora_0.png,1.0
+Japanese,lora,eval_outputs\Japanese_lora_1.png,1.0
+Japanese,lora,eval_outputs\Japanese_lora_2.png,1.0
+Japanese,lora,eval_outputs\Japanese_lora_3.png,1.0
+Japanese,lora,eval_outputs\Japanese_lora_4.png,1.0

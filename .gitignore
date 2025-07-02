@@ -9,21 +9,12 @@ __pycache__/
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
-# Logs
-*.log
-loss_logs/
 
 # Model artifacts
 checkpoints/
 *.ckpt
 *.pt
 *.pth
-
-# Training outputs
-lora-out/
-eval_outputs/
-*.jpg
-*.png
 
 Archive/
 

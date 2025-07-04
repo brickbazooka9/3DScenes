@@ -72,4 +72,33 @@ for culture in cultures:
     # BASELINE
     generate_and_score(pipe, culture, mode="base")
 
-    # Load LoRA a
+    # Load LoRA adapters if available
+    lora_unet_path = os.path.join(lora_dir, culture, "unet")
+    lora_text_path = os.path.join(lora_dir, culture, "text_encoder")
+
+    if os.path.exists(lora_unet_path):
+        print(f"🔁 Loading LoRA for {culture}")
+        pipe.unet = PeftModel.from_pretrained(pipe.unet, lora_unet_path)
+        pipe.unet.set_adapter("default")
+        print("✅ UNET LoRA loaded & set")
+        print_trainable_params(pipe.unet)
+
+        if os.path.exists(lora_text_path):
+            pipe.text_encoder = PeftModel.from_pretrained(pipe.text_encoder, lora_text_path)
+            pipe.text_encoder.set_adapter("default")
+            print("✅ Text Encoder LoRA loaded & set")
+            print_trainable_params(pipe.text_encoder)
+
+        pipe.unet.eval()
+        pipe.text_encoder.eval()
+
+        # Generate with LoRA
+        generate_and_score(pipe, culture, mode="lora")
+    else:
+        print(f"⚠️ No LoRA adapter found for {culture} — skipping LoRA generation.")
+
+# Export results to CSV
+df = pd.DataFrame(results)
+csv_path = os.path.join(output_dir, "clip_scores.csv")
+df.to_csv(csv_path, index=False)
+print(f"\n✅ Results saved to {csv_path}")

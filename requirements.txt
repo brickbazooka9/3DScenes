@@ -9,7 +9,7 @@ Pillow==11.3.0
 python-dotenv==1.1.1
 Requests==2.32.4
 setuptools==58.1.0
-torch==2.7.1
+torch==2.5.1
 torchvision==0.22.1
 tqdm==4.67.1
 transformers==4.53.0

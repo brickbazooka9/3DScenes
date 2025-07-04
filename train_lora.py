@@ -49,7 +49,9 @@ def main():
 
     print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No CUDA GPU available")
         # ─── CLI ───────────────────────────────────────────────────────────────────
+    
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("--run_name", help="Name for experiment/checkpoint separation", default=None)
     parser.add_argument("--data_root",   required=True, help="root directory of textures_lora")
     parser.add_argument("--culture",     required=True, help="subfolder name, e.g. Japanese")
     parser.add_argument("--steps",  type=int, default=1200)
@@ -62,7 +64,9 @@ def main():
                         help="also train LoRA on the text encoder")
     args = parser.parse_args()
 
-    checkpoint_dir = Path("checkpoints") / args.culture
+    run_id = args.run_name or args.culture  # fallback to culture if run_name is not given
+
+    checkpoint_dir = Path("checkpoints") / run_id
     checkpoint_dir.mkdir(parents=True, exist_ok=True)
     ckpt_file = checkpoint_dir / "latest.pt"
 
@@ -255,7 +259,7 @@ def main():
 
     # ─── Save LoRA weights ───────────────────────────────────────────────────────
     if acc.is_main_process:
-        out = Path("lora-out") / args.culture
+        out = Path("lora-out") / run_id
         out.mkdir(parents=True, exist_ok=True)
 
         unet.save_pretrained(out / "unet")

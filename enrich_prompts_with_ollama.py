@@ -29,11 +29,9 @@ from tqdm import tqdm
 # --------------------------------------------------------------------------
 #                            configuration
 # --------------------------------------------------------------------------
-BASE_DIR      = Path(
-    r"C:/Users/Avneet Singh/OneDrive/Documents/Forward/Bath/Academics/DIssertation/Implementation/dataset_culture_textures"
-)
-CSV_INPUT     = BASE_DIR / "all_metadata.csv"
-CSV_OUTPUT    = BASE_DIR / "all_metadata_enriched.csv"
+ROOT = Path(os.getenv("DATASET_PATH", "/workspace/dataset_culture_textures"))
+CSV_INPUT     = ROOT / "all_metadata.csv"
+CSV_OUTPUT    = ROOT / "all_metadata_enriched.csv"
 
 OLLAMA_URL    = "http://localhost:11434/api/generate"
 MODEL_NAME    = "llava"
@@ -128,7 +126,7 @@ def needs_work(master: Dict, enriched: Dict | None) -> bool:
 def enrich_worker(row: Dict) -> Dict:
     """Thread worker → always returns a row with enriched_prompt field."""
     rel = row["relative_path"].replace("\\", "/")
-    img_path = BASE_DIR / rel
+    img_path = ROOT / rel
 
     if not img_path.exists():
         row["enriched_prompt"] = "[ERROR] Image not found."

@@ -1,11 +1,11 @@
 import os
-import csv
+from pathlib import Path
 
-# Base folder where images are stored
-base_dir = "C:/Users/Avneet Singh/OneDrive/Documents/Forward/Bath/Academics/DIssertation/Implementation/dataset_culture_textures"  # <-- Change this to your actual path
+ROOT = Path(os.getenv("DATASET_PATH", "/workspace/dataset_culture_textures"))
+
 
 # Output CSV file
-csv_file = os.path.join(base_dir, "all_metadata.csv")
+csv_file = ROOT / "all_metadata.csv"
 
 # Columns for metadata
 fields = ["filename", "culture", "object_type", "relative_path", "prompt"]
@@ -13,8 +13,8 @@ fields = ["filename", "culture", "object_type", "relative_path", "prompt"]
 # Collect all records
 records = []
 
-for culture in os.listdir(base_dir):
-    culture_path = os.path.join(base_dir, culture)
+for culture in os.listdir(ROOT):
+    culture_path = os.path.join(ROOT, culture)
     if not os.path.isdir(culture_path):
         continue
     for object_type in os.listdir(culture_path):

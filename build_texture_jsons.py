@@ -2,7 +2,9 @@
 import csv, json, os, shutil
 from pathlib import Path
 
-CSV = Path("C:/Users/Avneet Singh/OneDrive/Documents/Forward/Bath/Academics/DIssertation/Implementation/dataset_culture_textures/all_metadata_enriched.csv")          # adjust if needed
+ROOT = Path(os.getenv("DATASET_PATH", "/workspace/dataset_culture_textures"))
+
+CSV = ROOT / "all_metadata_enriched.csv"         # adjust if needed
 OUT_ROOT = Path("textures_lora")                 # where your images are
 
 with CSV.open(newline="", encoding="utf-8") as f:

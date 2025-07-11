@@ -15,13 +15,14 @@ object_type = "wall"        # e.g. wall, floor, fabric, furniture
 query = f"{culture} {object_type} texture pattern interior"
 
 # Output folder
-base_path = "C:/Users/Avneet Singh/OneDrive/Documents/Forward/Bath/Academics/DIssertation/Implementation/dataset_culture_textures"
+base_path = "/workspace/dataset_culture_textures"
+
 
 save_path = os.path.join(base_path, culture, object_type)
 os.makedirs(save_path, exist_ok=True)
 
 # Max results to fetch
-max_images = 70
+max_images = 250
 
 # ------------------------ SEARCH & DOWNLOAD ------------------------
 

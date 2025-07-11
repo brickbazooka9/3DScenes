@@ -6,6 +6,7 @@ from transformers import CLIPProcessor, CLIPModel
 from diffusers import StableDiffusionPipeline
 from peft import PeftModel
 import pandas as pd
+from transformers import CLIPTokenizer
 
 # ---------- CONFIG ----------
 cultures = ["Japanese"]
@@ -25,6 +26,18 @@ clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
 os.makedirs(output_dir, exist_ok=True)
 results = []
 
+tokenizer = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32").tokenizer
+
+MAX_TOKENS = 77
+
+def check_prompt(prompt):
+    tokens = tokenizer(prompt)["input_ids"]
+    if len(tokens) > MAX_TOKENS:
+        print(f"⚠️ Warning: Prompt exceeds {MAX_TOKENS} tokens and will be truncated.")
+        # Optionally truncate:
+        prompt = tokenizer.decode(tokens[:MAX_TOKENS])
+    return prompt
+
 def print_trainable_params(model):
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
     total = sum(p.numel() for p in model.parameters())
@@ -32,6 +45,7 @@ def print_trainable_params(model):
 
 def generate_and_score(pipe, culture, mode):
     prompt = prompt_template.format(culture=culture)
+    prompt = check_prompt(prompt)
     for i in tqdm(range(num_images), desc=f"{culture} | {mode}"):
         generator = torch.Generator(device=device).manual_seed(seed + i)
         image = pipe(prompt, generator=generator).images[0]

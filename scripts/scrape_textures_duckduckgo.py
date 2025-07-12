@@ -58,7 +58,7 @@ for culture in cultures:
                     next_index = (
                         max([int(f.split('_')[-1].split('.')[0]) for f in existing if f.endswith('.jpg')] or [0]) + 1
                     )
-                    filename = f"{culture.lower()}_{object_type.lower()}_{next_index:03d}.jpg"
+                    filename = f"{culture.lower()}_{obj_type.lower()}_{next_index:03d}.jpg"
                     filepath = os.path.join(save_path, filename)
 
                     if not os.path.exists(filepath):

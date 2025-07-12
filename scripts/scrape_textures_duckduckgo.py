@@ -23,7 +23,7 @@ for culture in cultures:
 
         print(f"\n🔍 Searching: '{query}'")
         with DDGS() as ddgs:
-            results = list(ddgs.images(keywords=query, max_results=max_images))
+            results = list(ddgs.images(query=query, max_results=max_images))
 
         existing = set(os.listdir(save_path))
         downloaded = 0

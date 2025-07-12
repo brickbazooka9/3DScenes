@@ -41,7 +41,7 @@ for culture in cultures:
 
             try:
                 with DDGS() as ddgs:
-                    results = list(ddgs.images(keywords=query, max_results=max_images))
+                    results = list(ddgs.images(query, max_results=max_images))
             except Exception as e:
                 print(f"❌ Failed search for {query}: {e}")
                 continue

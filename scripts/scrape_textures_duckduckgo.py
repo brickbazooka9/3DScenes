@@ -1,6 +1,6 @@
 import os
 import requests
-from duckduckgo_search import DDGS  # or from ddgs import DDGS (if updated)
+from ddgs import DDGS
 from PIL import Image
 from io import BytesIO
 from tqdm import tqdm
@@ -54,7 +54,11 @@ for culture in cultures:
                     url = result["image"]
                     response = requests.get(url, timeout=10)
                     image = Image.open(BytesIO(response.content)).convert("RGB")
-                    filename = f"{culture.lower()}_{obj_type.lower()}_{img_counter + 1:03d}.jpg"
+                    existing = os.listdir(save_path)
+                    next_index = (
+                        max([int(f.split('_')[-1].split('.')[0]) for f in existing if f.endswith('.jpg')] or [0]) + 1
+                    )
+                    filename = f"{culture.lower()}_{object_type.lower()}_{next_index:03d}.jpg"
                     filepath = os.path.join(save_path, filename)
 
                     if not os.path.exists(filepath):

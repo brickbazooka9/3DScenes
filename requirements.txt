@@ -1,6 +1,6 @@
 accelerate==1.8.1
 diffusers==0.34.0
-duckduckgo_search==8.0.5
+duckduckgo_search>=0.9
 matplotlib==3.10.3
 openai==1.93.0
 pandas==2.3.0
@@ -14,3 +14,4 @@ torchvision==0.22.1
 tqdm==4.67.1
 transformers==4.53.0
 bitsandbytes==0.46.0
+ddgs

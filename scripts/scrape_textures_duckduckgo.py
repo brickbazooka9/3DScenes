@@ -53,5 +53,5 @@ for culture in cultures:
 
         print(f"✅ Finished: {culture} {object_type} ({downloaded} new images)")
 
-         time.sleep(20)
+        time.sleep(20)
 

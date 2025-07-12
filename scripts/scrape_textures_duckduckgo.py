@@ -5,6 +5,7 @@ from PIL import Image
 from io import BytesIO
 from tqdm import tqdm
 import time
+from ddgs import DDGS
 
 # --------------------------- CONFIG ---------------------------
 cultures = ["Japanese", "Indian", "Moroccan", "Scandinavian"]
@@ -51,4 +52,6 @@ for culture in cultures:
                 print(f"⚠️ Skipped image {i+1}: {e}")
 
         print(f"✅ Finished: {culture} {object_type} ({downloaded} new images)")
+
+         time.sleep(20)
 
